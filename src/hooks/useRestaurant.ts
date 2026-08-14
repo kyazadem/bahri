@@ -11,13 +11,14 @@ interface RestaurantContextType extends TableContext {
 const RestaurantContext = createContext<RestaurantContextType>({
   restaurantId: '',
   tableNumber: 0,
+  restaurant: undefined,
   isLoading: true,
   error: null,
 })
 
 export function RestaurantProvider({ children }: { children: React.ReactNode }) {
   const [searchParams] = useSearchParams()
-  const [restaurant, setRestaurant] = useState<Restaurant | undefined>()
+  const [restaurant, setRestaurant] = useState<Restaurant | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -67,4 +68,4 @@ export function RestaurantProvider({ children }: { children: React.ReactNode }) 
 
 export function useRestaurant() {
   return useContext(RestaurantContext)
-    }
+}
